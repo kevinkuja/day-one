@@ -1,0 +1,17 @@
+{
+  "printWidth": 100,
+  "trailingComma": "es5",
+  "semi": true,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "overrides": [
+    {
+      "files": "*.svg",
+      "options": {
+        "bracketSameLine": true,
+        "parser": "html",
+        "printWidth": 10000
+      }
+    }
+  ]
+}
