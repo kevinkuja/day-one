@@ -4,10 +4,25 @@
 
 ## 🚀 Overview
 
-Day One allows artists to tokenize their growth metrics as ERC-20 tokens, and fans to buy, sell and follow based on those tokens. This frontend provides:
+Day One allows artists to tokenize their growth metrics as ERC-20 tokens, and fans to buy, sell and follow based on those tokens. This backend provides the smart contracts
 
-- Full integration with Lens Protocol primitives: accounts, follows, token‐gated follow rules, and metadata.
-- A simple marketplace: mint and burn ArtistTokens by sending GHO to the artist's Lens Account.
+## Contracts Overview
+
+### PriceEngine.sol
+Manages dynamic token pricing for artists based on their metrics. Calculates liquidity released from decreasing metrics, adjusts prices for increasing metrics using available liquidity (`treasuryGHO - releasedLiquidity`), applies a scaling factor if liquidity is insufficient, and deducts used liquidity from the treasury.
+
+### ArtistToken.sol
+An ERC20 token representing an artist's value, integrated with `PriceEngine` for dynamic pricing. Supports minting tokens (requiring GHO payment) and burning tokens (refunding GHO). Enforces a maximum supply, adjustable by the owner within defined limits.
+
+### ArtistTokenFactory.sol
+A factory contract for deploying `ArtistToken` instances for different artists. Creates tokens with specified name, symbol, max supply, price engine, and artist address, ensuring consistent token creation.
+
+### MockYieldPlatform.sol
+A mock contract for testing `PriceEngine`. Simulates a yield platform by handling GHO deposits, withdrawals, and yield generation, enabling liquidity interaction tests.
+
+
+
+
 
 ---
 
